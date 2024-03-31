@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Border Animation CSS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            -ms-align-items: center;
+            min-height: 100vh;
+            background-color: #0e1538;
+        }
+
+        .box {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            -ms-aligin-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            overflow: hidden;
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 170px;
+                height: 140%;
+                background: linear-gradient(#00ccff, #d500f9);
+                animation: rotate 4s linear infinite;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                inset: 5px;
+                background: #0e1538;
+                border-radius: 16px;
+            }
+
+            h2 {
+                color: rgb(226, 226, 226);
+                text-shadow: 2px 2px black;
+                font-size: 8em;
+                z-index: 2;
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box">
+        <h2>CSS</h2>
+    </div>
+</body>
+
+</html>

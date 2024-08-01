@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>致最可爱的张祎</title>
+    <link
+        rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 style=%22dominant-baseline:central;text-anchor:middle;font-size:90px;%22>💕</text></svg>" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden
+        }
+
+        #text {
+            color: white;
+            font-size: 80px;
+            opacity: 0;
+            transition: all 1.5s;
+            color: #FF7FAE;
+
+            span {
+                color: #FF007F;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- <embed src="/music/故事还长-云汐.mp3" autostart="true" loop="true" hidden="true"></embed> -->
+    <audio autoplay="true" loop="true">
+        <source src="/music/故事还长-云汐.mp3">
+    </audio>
+    <div id="text"></div>
+    <script>
+        var duration = 1 * 1000;
+        var animationEnd = Date.now() + duration;
+        var skew = 1;
+
+        function randomInRange (min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function frame () {
+            // text.style.opacity = 0;
+            var timeLeft = animationEnd - Date.now();
+            var ticks = Math.max(200, 500 * (timeLeft / duration));
+            skew = Math.max(0.8, skew - 0.001);
+            var unicorn = confetti.shapeFromText({ text: '♥️', scalar: 2 });
+            var defaults = {
+                particleCount: 30,
+                spread: 180,
+                // startVelocity: 0,
+                ticks: ticks,
+                origin: {
+                    // x: Math.random(),
+                    y: 0.8
+                },
+                // colors: ['#ffffff'],
+                // shapes: [unicorn],
+                gravity: randomInRange(0.2, 0.8),
+                scalar: randomInRange(0.4, 1),
+                drift: randomInRange(-0.4, 0.4)
+            };
+            const finishAnimation = confetti({
+                ...defaults
+            });
+            setTimeout(() => {
+                text.style.opacity = 1;
+            }, duration);
+            finishAnimation.then(() => {
+                setTimeout(() => {
+                    frame();
+                }, duration);
+            });
+            if (timeLeft > 0) {
+                requestAnimationFrame(frame);
+            }
+        };
+        function daysBetween (dateString) {
+            // 将输入日期字符串转换为日期对象
+            const startDate = new Date(dateString);
+            // 获取当前日期
+            const currentDate = new Date();
+            // 计算两个日期之间的时间差（以毫秒为单位）
+            const timeDifference = currentDate - startDate;
+            // 将时间差转换为天数
+            const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            return daysDifference;
+        }
+        const days = daysBetween('2022-11-10');
+        text.innerHTML = `我们已经在一起<span>${days}</span>天了`;
+        frame();
+    </script>
+</body>
+
+</html>

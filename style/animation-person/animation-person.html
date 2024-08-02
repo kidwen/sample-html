@@ -16,6 +16,7 @@
             --bg-color-light: #369;
             --height: 16px;
             --width: 2px;
+            --duration: 0.4s;
             height: 100vh;
             overflow: hidden;
             background-color: var(--bg-color);
@@ -25,15 +26,16 @@
             position: absolute;
             left: 50px;
             top: 50px;
-            height: 50px;
-            width: 80px;
-            height: 128px;
+            width: 30px;
+            height: 40px;
+            /* border-bottom: 1px solid red; */
         }
 
         .header-body {
             width: var(--width);
             height: var(--height);
             background-color: var(--bg-color-light);
+            border-radius: 2px;
 
             &::before {
                 --header-height: calc(var(--height) * 3 / 4);
@@ -47,16 +49,156 @@
                 content: '';
             }
         }
+
+        .left-arm,
+        .right-arm,
+        .left-leg,
+        .right-leg {
+            width: var(--width);
+            height: calc(var(--height) * 2);
+            border-radius: 2px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            display: flex;
+        }
+
+        .arm-top,
+        .arm-end,
+        .leg-top,
+        .leg-end {
+            width: var(--width);
+            height: calc(var(--height) - 2px);
+            background-color: var(--bg-color-light);
+            flex-direction: column;
+        }
+
+        .arm-end,
+        .leg-end {
+            height: calc(var(--height) + 2px);
+        }
+
+        .left-arm,
+        .right-arm {
+            flex-direction: column;
+        }
+
+        .left-leg,
+        .right-leg {
+            top: calc(var(--height) - var(--width));
+            flex-direction: column;
+        }
+
+        .left-arm,
+        .left-leg {
+            transform-origin: top right;
+        }
+
+        .right-arm,
+        .right-leg {
+            transform-origin: top left;
+        }
+
+        .left-arm {
+            transform: rotate(20deg);
+            animation: defend var(--duration) ease-in infinite alternate;
+
+            .arm-end {
+                transform: rotate(-135deg);
+                transform-origin: top;
+                animation: defend-punch var(--duration) ease-in infinite alternate;
+            }
+
+        }
+
+        .right-arm {
+            transform: rotate(-30deg);
+            animation: hit var(--duration) ease-in infinite alternate;
+
+            .arm-end {
+                transform: rotate(-120deg);
+                transform-origin: top;
+                animation: hit-punch var(--duration) ease-in infinite alternate;
+            }
+
+        }
+
+        .left-leg {
+            transform: rotate(35deg);
+        }
+
+        .right-leg {
+            transform: rotate(-45deg);
+
+            .leg-end {
+                transform: rotate(45deg);
+                transform-origin: top;
+            }
+        }
+
+        @keyframes hit {
+            from {
+                transform: rotate(-30deg);
+            }
+
+            to {
+                transform: rotate(-90deg);
+            }
+        }
+
+        @keyframes hit-punch {
+            from {
+                transform: rotate(-120deg);
+            }
+
+            to {
+                transform: rotate(0deg);
+            }
+        }
+
+
+        @keyframes defend {
+            from {
+                transform: rotate(20deg);
+            }
+
+            to {
+                transform: rotate(45deg);
+            }
+        }
+
+        @keyframes defend-punch {
+            from {
+                transform: rotate(-135deg);
+            }
+
+            to {
+                transform: rotate(-160deg);
+            }
+        }
+
     </style>
 </head>
 
 <body>
     <figure class="person-wrapper">
         <div class="header-body"></div>
-        <div class="left-arm"></div>
-        <div class="right-arm"></div>
-        <div class="left-leg"></div>
-        <div class="right-leg"></div>
+        <div class="left-arm">
+            <div class="arm-top"></div>
+            <div class="arm-end"></div>
+        </div>
+        <div class="right-arm">
+            <div class="arm-top"></div>
+            <div class="arm-end"></div>
+        </div>
+        <div class="left-leg">
+            <div class="leg-top"></div>
+            <div class="leg-end"></div>
+        </div>
+        <div class="right-leg">
+            <div class="leg-top"></div>
+            <div class="leg-end"></div>
+        </div>
     </figure>
 </body>
 

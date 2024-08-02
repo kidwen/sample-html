@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Person</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            --bg-color: #000;
+            --bg-color-light: #369;
+            --height: 16px;
+            --width: 2px;
+            height: 100vh;
+            overflow: hidden;
+            background-color: var(--bg-color);
+        }
+
+        .person-wrapper {
+            position: absolute;
+            left: 50px;
+            top: 50px;
+            height: 50px;
+            width: 80px;
+            height: 128px;
+        }
+
+        .header-body {
+            width: var(--width);
+            height: var(--height);
+            background-color: var(--bg-color-light);
+
+            &::before {
+                --header-height: calc(var(--height) * 3 / 4);
+                width: var(--header-height);
+                height: var(--header-height);
+                border-radius: 100%;
+                border: var(--width) solid var(--bg-color-light);
+                position: absolute;
+                top: calc(0px - var(--height));
+                left: calc(0px - var(--width) / 2 - var(--header-height) / 2);
+                content: '';
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <figure class="person-wrapper">
+        <div class="header-body"></div>
+        <div class="left-arm"></div>
+        <div class="right-arm"></div>
+        <div class="left-leg"></div>
+        <div class="right-leg"></div>
+    </figure>
+</body>
+
+</html>

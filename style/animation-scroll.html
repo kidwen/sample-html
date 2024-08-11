@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Scroll</title>
+    <style>
+        body {
+            height: 500vh;
+        }
+
+        section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .s1 {
+            z-index: 10;
+            animation: grow-hidden 1s ease-in;
+            animation-timeline: scroll();
+        }
+
+        .s2 {
+            opacity: 0;
+            animation: grow-hidden2 1s ease-in;
+            animation-timeline: scroll();
+        }
+
+        @keyframes grow-hidden {
+            from {
+                font-size: 12px;
+            }
+
+            20% {
+                font-size: 200px;
+                opacity: 0;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        @keyframes grow-hidden2 {
+            from {
+                font-size: 12px;
+            }
+
+            20% {
+                font-size: 20px;
+                opacity: 0;
+            }
+
+            30% {
+                opacity: 1;
+                font-size: 200px;
+            }
+
+            40% {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 0;
+                font-size: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="s1"> aaaaaaa</section>
+    <section class="s2"> bbbbbbbb</section>
+</body>
+
+</html>

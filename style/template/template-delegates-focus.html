@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Template Delegates Focus</title>
+    </head>
+    <body>
+        <!-- <template shadowrootmode="open">
+            <style>
+                :host {
+                    display: block;
+                    border: 1px dotted black;
+                    padding: 10px;
+                    margin: 10px;
+                }
+                :focus {
+                    outline: 2px solid blue;
+                }
+            </style>
+            <div>Clickable Shadow DOM text</div>
+            <input type="text" placeholder="Input inside Shadow DOM" />
+        </template> -->
+        <div id="container"></div>
+
+        <template id="template" shadowrootmode="open" shadowrootdelegatesfocus>
+            <style>
+                :host {
+                    display: block;
+                    border: 1px dotted black;
+                    padding: 10px;
+                    margin: 10px;
+                }
+                :focus {
+                    outline: 2px solid blue;
+                }
+
+                .label {
+                    margin-bottom: 2em;
+                }
+            </style>
+            <div class="label">Clickable Shadow DOM text</div>
+            <input type="text" placeholder="Input inside Shadow DOM" />
+        </template>
+    </body>
+</html>
